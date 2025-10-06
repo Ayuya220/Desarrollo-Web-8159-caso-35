@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>B17 - Boleta digital | Flor y Vida</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pastel-pink: #f8c6d0;
+      --pastel-mint: #d8f3dc;
+      --pastel-cream: #fef9f3;
+      --pastel-lavender: #e6e6fa;
+      --pastel-gray: #f5f5f5;
+      --dark-green: #2d5a27;
+      --text: #333;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: var(--pastel-cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--dark-green);
+      font-weight: 600;
+    }
+
+    .logo span {
+      color: var(--pastel-pink);
+    }
+
+    main {
+      padding: 3rem 5%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .receipt-box {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      width: 100%;
+      max-width: 600px;
+      font-size: 0.95rem;
+    }
+
+    .story-title {
+      font-family: 'Playfair Display', serif;
+      color: var(--dark-green);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-size: 1.6rem;
+    }
+
+    .receipt-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--pastel-mint);
+    }
+
+    .receipt-info {
+      margin-bottom: 1.5rem;
+    }
+
+    .receipt-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.4rem;
+    }
+
+    .receipt-items {
+      margin-bottom: 1.5rem;
+    }
+
+    .item-line {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.3rem;
+    }
+
+    .total-row {
+      font-weight: bold;
+      color: var(--dark-green);
+      margin-top: 0.5rem;
+      padding-top: 0.8rem;
+      border-top: 1px dashed #999;
+    }
+
+    .success-message {
+      background-color: var(--pastel-mint);
+      color: var(--dark-green);
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+
+    .btn-download {
+      width: 100%;
+      padding: 0.9rem;
+      background-color: var(--pastel-pink);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    .btn-download:hover {
+      background-color: #f3a5b8;
+    }
+
+    .message {
+      padding: 0.8rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      text-align: center;
+      display: none;
+    }
+
+    .error {
+      background-color: #ffe6e6;
+      color: #d32f2f;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 1rem;
+      color: var(--pastel-pink);
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background: var(--dark-green);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Flor <span>y Vida</span></div>
+    <div></div>
+  </header>
+
+  <main>
+    <div class="receipt-box">
+      <h1 class="story-title">B17: Boleta digital</h1>
+      <p style="margin-bottom: 1.5rem; text-align: center; color: #666;">
+        Tu boleta ha sido generada y enviada a tu correo.
+      </p>
+
+      <div class="success-message">
+        ✅ ¡Pago confirmado! La boleta digital fue enviada a <strong>flor@gmail.com</strong>
+      </div>
+
+      <div class="receipt-header">
+        <h2>Boleta Electrónica N° 1001</h2>
+        <p>Flor y Vida - RUT: 76.543.210-9</p>
+      </div>
+
+      <div class="receipt-info">
+        <div class="receipt-row">
+          <span>Fecha:</span>
+          <span>10/04/2025</span>
+        </div>
+        <div class="receipt-row">
+          <span>Cliente:</span>
+          <span>Antonia Flores</span>
+        </div>
+        <div class="receipt-row">
+          <span>Email:</span>
+          <span>flor@gmail.com</span>
+        </div>
+        <div class="receipt-row">
+          <span>Dirección:</span>
+          <span>Calle Rosas 123, Providencia</span>
+        </div>
+      </div>
+
+      <div class="receipt-items">
+        <div class="item-line">
+          <span>Ramo Primavera x2</span>
+          <span>$37.980</span>
+        </div>
+        <div class="item-line">
+          <span>Ramo Rosa Clásico x1</span>
+          <span>$16.990</span>
+        </div>
+      </div>
+
+      <div class="receipt-row">
+        <span>Envío</span>
+        <span>$2.500</span>
+      </div>
+      <div class="receipt-row total-row">
+        <span><strong>Total</strong></span>
+        <span><strong>$57.470</strong></span>
+      </div>
+
+      <button class="btn-download" onclick="downloadReceipt()">
+        Descargar boleta (PDF)
+      </button>
+
+      <div id="message" class="message"></div>
+
+      <a href="index.html" class="back-link">← Volver al inicio</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Flor y Vida — Story B17</p>
+  </footer>
+
+  <script>
+    function downloadReceipt() {
+      const messageEl = document.getElementById('message');
+      
+      // Simular validación de email
+      const email = 'flor@gmail.com'; // En implementación real si verificaría si es válido
+      
+      if (email && email.includes('@')) {
+        messageEl.className = 'message success';
+        messageEl.textContent = '✅ Boleta descargada como B17_1001.pdf';
+        messageEl.style.display = 'block';
+      } else {
+        messageEl.className = 'message error';
+        messageEl.textContent = 'Error al enviar boleta electrónica, verifique el correo';
+        messageEl.style.display = 'block';
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>B25 - Órdenes de despacho | Flor y Vida</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pastel-pink: #f8c6d0;
+      --pastel-mint: #d8f3dc;
+      --pastel-cream: #fef9f3;
+      --pastel-lavender: #e6e6fa;
+      --pastel-gray: #f5f5f5;
+      --dark-green: #2d5a27;
+      --text: #333;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: var(--pastel-cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--dark-green);
+      font-weight: 600;
+    }
+
+    .logo span {
+      color: var(--pastel-pink);
+    }
+
+    main {
+      padding: 2rem 5%;
+    }
+
+    .dispatch-box {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .story-title {
+      font-family: 'Playfair Display', serif;
+      color: var(--dark-green);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-size: 1.6rem;
+    }
+
+    .order-card {
+      border: 1px solid var(--pastel-mint);
+      border-radius: 12px;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+      background-color: #fafafa;
+    }
+
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.8rem;
+    }
+
+    .order-id {
+      font-weight: 600;
+      color: var(--dark-green);
+    }
+
+    .order-status {
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    .order-info {
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .delivery-details {
+      background-color: var(--pastel-lavender);
+      padding: 0.8rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .btn-print {
+      background-color: var(--pastel-pink);
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-right: 0.5rem;
+    }
+
+    .btn-print:hover {
+      background-color: #f3a5b8;
+    }
+
+    .btn-print:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+
+    .message {
+      padding: 0.8rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      text-align: center;
+      display: none;
+    }
+
+    .error {
+      background-color: #ffe6e6;
+      color: #d32f2f;
+    }
+
+    .admin-menu {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .admin-menu a {
+      padding: 0.5rem 1rem;
+      background-color: var(--pastel-mint);
+      color: var(--dark-green);
+      text-decoration: none;
+      border-radius: 20px;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .admin-menu a:hover {
+      background-color: #c0e7c4;
+    }
+
+    .warning-box {
+      background-color: #ffe6e6;
+      padding: 0.8rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 1rem;
+      color: var(--pastel-pink);
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background: var(--dark-green);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Flor <span>y Vida</span></div>
+    <div></div>
+  </header>
+
+  <main>
+    <div class="dispatch-box">
+      <h1 class="story-title">B25: Generar órdenes de despacho</h1>
+      <p style="margin-bottom: 1.5rem; text-align: center; color: #666;">
+        Imprime órdenes de despacho solo para pedidos con pago confirmado.
+      </p>
+
+      <div class="admin-menu">
+        <a href="B04.html">Usuarios</a>
+        <a href="B15.html">Pedidos</a>
+        <a href="B25.html">Órdenes de despacho</a>
+        <a href="B27.html">Asignar repartidor</a>
+      </div>
+
+      <div id="message" class="message"></div>
+
+      <!-- Pedido elegible -->
+      <div class="order-card">
+        <div class="order-header">
+          <div class="order-id">Pedido #1001</div>
+          <div class="order-status">Pago confirmado</div>
+        </div>
+        <div class="order-info">
+          <strong>Cliente:</strong> Antonia Flores<br>
+          <strong>Productos:</strong> Ramo Primavera x2, Ramo Rosa Clásico x1
+        </div>
+        <div class="delivery-details">
+          📍 <strong>Dirección:</strong> Calle Rosas 123, Providencia<br>
+          📅 <strong>Fecha entrega:</strong> 10/04/2025<br>
+          🕒 <strong>Franja horaria:</strong> 12:00 - 14:00
+        </div>
+        <button class="btn-print" onclick="printDispatchOrder('1001', true)">
+          Imprimir orden de despacho
+        </button>
+      </div>
+
+      <!-- Pedido NO elegible -->
+      <div class="order-card">
+        <div class="order-header">
+          <div class="order-id">Pedido #1002</div>
+          <div class="order-status">Pendiente de pago</div>
+        </div>
+        <div class="order-info">
+          <strong>Cliente:</strong> Viviana Rojas<br>
+          <strong>Productos:</strong> Ramo Invernal x1
+        </div>
+        <div class="warning-box">
+          ❌ No se puede generar orden: el pago aún no ha sido confirmado.
+        </div>
+        <button class="btn-print" onclick="printDispatchOrder('1002', false)" disabled>
+          Imprimir orden (no disponible)
+        </button>
+      </div>
+
+      <a href="index.html" class="back-link">← Volver al inicio</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Flor y Vida — Story B25</p>
+  </footer>
+
+  <script>
+    function printDispatchOrder(orderId, paymentConfirmed) {
+      const messageEl = document.getElementById('message');
+      
+      if (paymentConfirmed) {
+        messageEl.style.display = 'none';
+        alert('🖨️ Orden de despacho generada para impresión.');
+      } else {
+        messageEl.className = 'message error';
+        messageEl.textContent = 'No se puede generar orden, pedido sin pago confirmado';
+        messageEl.style.display = 'block';
+      }
+    }
+  </script>
+
+</body>
+</html>

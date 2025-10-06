@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>B08 - Actualizar datos del cliente | Flor y Vida</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pastel-pink: #f8c6d0;
+      --pastel-mint: #d8f3dc;
+      --pastel-cream: #fef9f3;
+      --pastel-lavender: #e6e6fa;
+      --pastel-gray: #f5f5f5;
+      --dark-green: #2d5a27;
+      --text: #333;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: var(--pastel-cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--dark-green);
+      font-weight: 600;
+    }
+
+    .logo span {
+      color: var(--pastel-pink);
+    }
+
+    main {
+      padding: 3rem 5%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .story-box {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .story-title {
+      font-family: 'Playfair Display', serif;
+      color: var(--dark-green);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-size: 1.6rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1rem;
+    }
+
+    .info-box {
+      background-color: #fff8e1;
+      padding: 0.8rem;
+      border-radius: 6px;
+      margin-bottom: 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 0.9rem;
+      background-color: var(--pastel-pink);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    .btn-submit:hover {
+      background-color: #f3a5b8;
+    }
+
+    .message {
+      padding: 0.8rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      text-align: center;
+      display: none;
+    }
+
+    .success {
+      background-color: var(--pastel-mint);
+      color: var(--dark-green);
+    }
+
+    .error {
+      background-color: #ffe6e6;
+      color: #d32f2f;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 1rem;
+      color: var(--pastel-pink);
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background: var(--dark-green);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Flor <span>y Vida</span></div>
+    <div></div>
+  </header>
+
+  <main>
+    <div class="story-box">
+      <h1 class="story-title">B08: Actualizar datos del cliente</h1>
+      <p style="margin-bottom: 1.5rem; text-align: center; color: #666;">
+        Modifica tu dirección y teléfono para asegurar entregas correctas.
+      </p>
+
+      <div class="info-box">
+        ✉️ Si cambias tu correo electrónico, recibirás un enlace de confirmación.
+      </div>
+
+      <div id="message" class="message"></div>
+
+      <form id="updateProfileForm">
+        <div class="form-group">
+          <label for="name">Nombre completo</label>
+          <input type="text" id="name" value="Antonia Flores" readonly>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Correo electrónico *</label>
+          <input type="email" id="email" value="flor@gmail.com">
+        </div>
+
+        <div class="form-group">
+          <label for="address">Dirección de entrega *</label>
+          <input type="text" id="address" value="Calle Rosas 123, Providencia" required>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Teléfono *</label>
+          <input type="tel" id="phone" value="+56 9 8765 4321" required>
+        </div>
+
+        <button type="submit" class="btn-submit">Guardar cambios</button>
+      </form>
+
+      <a href="index.html" class="back-link">← Volver al inicio</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Flor y Vida — Story B08</p>
+  </footer>
+
+  <script>
+    document.getElementById('updateProfileForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value;
+      const address = document.getElementById('address').value;
+      const phone = document.getElementById('phone').value;
+      const messageEl = document.getElementById('message');
+
+      if (!address.trim() || !phone.trim()) {
+        messageEl.className = 'message error';
+        messageEl.textContent = 'Dirección y teléfono son obligatorios';
+        messageEl.style.display = 'block';
+      } else {
+        messageEl.className = 'message success';
+        if (email !== 'flor@gmail.com') {
+          messageEl.textContent = '¡Datos actualizados! Se envió correo de confirmación para el nuevo email.';
+        } else {
+          messageEl.textContent = '¡Datos actualizados exitosamente!';
+        }
+        messageEl.style.display = 'block';
+      }
+    });
+  </script>
+
+</body>
+</html>

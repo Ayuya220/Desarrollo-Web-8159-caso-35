@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flor y Vida</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pastel-pink: #f8c6d0;
+      --pastel-mint: #d8f3dc;
+      --pastel-cream: #fef9f3;
+      --pastel-lavender: #e6e6fa;
+      --pastel-gray: #f5f5f5;
+      --dark-green: #2d5a27;
+      --text: #333;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: var(--pastel-cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--dark-green);
+      font-weight: 600;
+    }
+
+    .logo span {
+      color: var(--pastel-pink);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--pastel-pink);
+    }
+
+    .auth-buttons a {
+      margin-left: 1rem;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .btn-login {
+      background-color: var(--pastel-mint);
+      color: var(--dark-green);
+    }
+
+    .btn-register {
+      background-color: var(--pastel-pink);
+      color: white;
+    }
+
+    main {
+      padding: 2rem 5%;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: linear-gradient(to right, var(--pastel-mint), var(--pastel-lavender));
+      border-radius: 15px;
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--dark-green);
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--dark-green);
+      margin: 2rem 0 1.5rem;
+      text-align: center;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-img {
+      height: 200px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 1rem;
+    }
+
+    .product-info h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark-green);
+    }
+
+    .product-info p {
+      font-size: 0.95rem;
+      color: #666;
+    }
+
+    .price {
+      font-weight: bold;
+      color: var(--pastel-pink);
+      font-size: 1.1rem;
+    }
+
+    .btn-view-catalog {
+      display: block;
+      width: 220px;
+      margin: 2rem auto;
+      padding: 0.8rem;
+      background-color: var(--pastel-pink);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 500;
+      text-decoration: none;
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    .btn-view-catalog:hover {
+      background-color: #f3a5b8;
+    }
+
+    footer {
+      background: var(--dark-green);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .auth-buttons {
+        display: flex;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<!-- Este es el menu o index que vendria a ser la pagina inicial y la que nos permite movernos entre htmls -->
+<body>
+
+  <header>
+    <div class="logo">Flor <span>y Vida</span></div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="catalogo.html">Catálogo</a></li>
+        <li><a href="B13.html">Carrito</a></li>
+      </ul>
+    </nav>
+    <div class="auth-buttons">
+      <a href="B02.html" class="btn-login">Iniciar Sesión</a>
+      <a href="B01.html" class="btn-register">Registrarse</a>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <h1>Arreglos florales con amor y dedicación</h1>
+      <p>Entregas a domicilio en todo Santiago. Haz de cada ocasión un momento inolvidable con Flor y Vida.</p>
+    </section>
+
+    <!-- aca si me ayudo gemini con las frases porque no tenia cabeza para hacerlas mientras trabajaba en todo esto -->
+
+    <h2 class="section-title">Destacados esta semana</h2>
+    <div class="products">
+      <div class="product-card">
+        <img src="catalogo_imagenes/ramo-primaveral.jpg" alt="Ramo Primavera" class="product-img">
+        <div class="product-info">
+          <h3>Ramo Primavera</h3>
+          <p>Rosas, .... y .... fresco</p>
+          <!-- no se de flores -->
+          <div class="price">$18.990</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="catalogo_imagenes/ramo_invernal.jpg" alt="Ramo Invernal" class="product-img">
+        <div class="product-info">
+          <h3>Ramo Invernal</h3>
+          <p>Hortensias y ramas secas elegantes</p>
+          <div class="price">$22.500</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="catalogo_imagenes/ramo_rosas.jpg" alt="Ramo Rosa Clásico" class="product-img">
+        <div class="product-info">
+          <h3>Ramo Rosa Clásico</h3>
+          <p>Rosas rojas premium con follaje verde</p>
+          <div class="price">$16.990</div>
+        </div>
+      </div>
+    </div>
+
+    <a href="catalogo.html" class="btn-view-catalog">Ver catálogo completo</a>
+
+  </main>
+
+  <footer>
+    <p>© 2025 Flor y Vida — Todos los derechos reservados</p>
+    <p>contacto@floryvida.cl | +56 9 1234 5678</p>
+  </footer>
+
+</body>
+</html>

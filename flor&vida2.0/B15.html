@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>B15 - Gestión de estado de pedidos | Flor y Vida</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pastel-pink: #f8c6d0;
+      --pastel-mint: #d8f3dc;
+      --pastel-cream: #fef9f3;
+      --pastel-lavender: #e6e6fa;
+      --pastel-gray: #f5f5f5;
+      --dark-green: #2d5a27;
+      --text: #333;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: var(--pastel-cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--dark-green);
+      font-weight: 600;
+    }
+
+    .logo span {
+      color: var(--pastel-pink);
+    }
+
+    main {
+      padding: 2rem 5%;
+    }
+
+    .admin-panel {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .story-title {
+      font-family: 'Playfair Display', serif;
+      color: var(--dark-green);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-size: 1.6rem;
+    }
+
+    .order-card {
+      border: 1px solid var(--pastel-mint);
+      border-radius: 12px;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .order-id {
+      font-weight: 600;
+      color: var(--dark-green);
+    }
+
+    .order-customer {
+      color: #555;
+    }
+
+    .order-items {
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .order-status {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .status-pending {
+      background-color: #ffe0b2;
+      color: #e65100;
+    }
+
+    .status-paid {
+      background-color: var(--pastel-mint);
+      color: var(--dark-green);
+    }
+
+    .status-shipped {
+      background-color: #bbdefb;
+      color: #0d47a1;
+    }
+
+    .status-delivered {
+      background-color: #c8e6c9;
+      color: #2e7d32;
+    }
+
+    .form-group {
+      margin-top: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+    }
+
+    .form-group select {
+      width: 100%;
+      padding: 0.7rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1rem;
+    }
+
+    .btn-update {
+      width: 100%;
+      padding: 0.8rem;
+      background-color: var(--pastel-pink);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 0.8rem;
+    }
+
+    .btn-update:hover {
+      background-color: #f3a5b8;
+    }
+
+    .message {
+      padding: 0.8rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      text-align: center;
+      display: none;
+    }
+
+    .success {
+      background-color: var(--pastel-mint);
+      color: var(--dark-green);
+    }
+
+    .error {
+      background-color: #ffe6e6;
+      color: #d32f2f;
+    }
+
+    .admin-menu {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .admin-menu a {
+      padding: 0.5rem 1rem;
+      background-color: var(--pastel-mint);
+      color: var(--dark-green);
+      text-decoration: none;
+      border-radius: 20px;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .admin-menu a:hover {
+      background-color: #c0e7c4;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 1rem;
+      color: var(--pastel-pink);
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background: var(--dark-green);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Flor <span>y Vida</span></div>
+    <div></div>
+  </header>
+
+  <main>
+    <div class="admin-panel">
+      <h1 class="story-title">B15: Gestión de estado de pedidos</h1>
+      <p style="margin-bottom: 1.5rem; text-align: center; color: #666;">
+        Actualiza el estado de los pedidos. Cada cambio queda registrado y notifica al cliente.
+      </p>
+
+      <div class="admin-menu">
+        <a href="B04.html">Usuarios</a>
+        <a href="B10.html">Productos</a>
+        <a href="B15.html">Gestión de pedidos</a>
+        <a href="B25.html">Órdenes de despacho</a>
+        <a href="B22.html">Reportes</a>
+      </div>
+
+      <div id="message" class="message"></div>
+
+      <!-- Pedido 1 -->
+      <div class="order-card">
+        <div class="order-header">
+          <div class="order-id">#1001</div>
+          <div class="order-customer">flor@gmail.com</div>
+        </div>
+        <div class="order-items">
+          • Ramo Primavera x2<br>
+          • Ramo Rosa Clásico x1
+        </div>
+        <div>
+          <span class="order-status status-paid">Pago confirmado</span>
+        </div>
+
+        <form class="form-group" id="statusForm1">
+          <label for="status-1001">Nuevo estado</label>
+          <select id="status-1001">
+            <option value="paid" selected>Pago confirmado</option>
+            <option value="shipped">Pedido despachado</option>
+            <option value="delivered">Entregado</option>
+          </select>
+          <button type="button" class="btn-update" onclick="updateStatus('1001')">Actualizar estado</button>
+        </form>
+      </div>
+
+      <!-- Pedido 2 -->
+      <div class="order-card">
+        <div class="order-header">
+          <div class="order-id">#1002</div>
+          <div class="order-customer">vida@gmail.com</div>
+        </div>
+        <div class="order-items">
+          • Ramo Invernal x1
+        </div>
+        <div>
+          <span class="order-status status-pending">Pendiente de pago</span>
+        </div>
+
+        <form class="form-group" id="statusForm2">
+          <label for="status-1002">Nuevo estado</label>
+          <select id="status-1002">
+            <option value="pending" selected>Pendiente de pago</option>
+            <option value="paid">Pago confirmado</option>
+          </select>
+          <button type="button" class="btn-update" onclick="updateStatus('1002')">Actualizar estado</button>
+        </form>
+      </div>
+
+      <a href="index.html" class="back-link">← Volver al inicio</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Flor y Vida — Story B15</p>
+  </footer>
+
+  <script>
+    function updateStatus(orderId) {
+      const messageEl = document.getElementById('message');
+      
+      if (orderId === '1001') {
+        messageEl.className = 'message success';
+        messageEl.textContent = '¡Pedido #1001 marcado como "Pedido despachado"! Cliente notificado.';
+        messageEl.style.display = 'block';
+      } else if (orderId === '1002') {
+        messageEl.className = 'message success';
+        messageEl.textContent = '¡Pedido #1002 marcado como "Pago confirmado"! Cliente notificado.';
+        messageEl.style.display = 'block';
+      }
+    }
+  </script>
+
+</body>
+</html>

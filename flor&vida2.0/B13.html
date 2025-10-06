@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>B13 - Carrito de compras | Flor y Vida</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pastel-pink: #f8c6d0;
+      --pastel-mint: #d8f3dc;
+      --pastel-cream: #fef9f3;
+      --pastel-lavender: #e6e6fa;
+      --pastel-gray: #f5f5f5;
+      --dark-green: #2d5a27;
+      --text: #333;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: var(--pastel-cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--dark-green);
+      font-weight: 600;
+    }
+
+    .logo span {
+      color: var(--pastel-pink);
+    }
+
+    main {
+      padding: 3rem 5%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .cart-box {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      width: 100%;
+      max-width: 700px;
+    }
+
+    .story-title {
+      font-family: 'Playfair Display', serif;
+      color: var(--dark-green);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-size: 1.6rem;
+    }
+
+    .continue-shopping {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--pastel-pink);
+      text-decoration: none;
+    }
+
+    .continue-shopping:hover {
+      text-decoration: underline;
+    }
+
+    .cart-empty {
+      text-align: center;
+      padding: 3rem;
+      color: #777;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .item-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .item-info {
+      flex: 1;
+    }
+
+    .item-name {
+      font-weight: 600;
+      color: var(--dark-green);
+      margin-bottom: 0.3rem;
+    }
+
+    .item-price {
+      color: var(--pastel-pink);
+      font-weight: 500;
+    }
+
+    .item-qty {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .qty-btn {
+      width: 28px;
+      height: 28px;
+      background: var(--pastel-mint);
+      border: none;
+      border-radius: 50%;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .qty-value {
+      min-width: 24px;
+      text-align: center;
+    }
+
+    .remove-btn {
+      color: #d32f2f;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    .cart-summary {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 2px solid var(--pastel-mint);
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.6rem;
+    }
+
+    .total-row {
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: var(--dark-green);
+      margin-top: 0.5rem;
+      padding-top: 0.8rem;
+      border-top: 1px dashed #ccc;
+    }
+
+    .btn-checkout {
+      width: 100%;
+      padding: 0.9rem;
+      background-color: var(--pastel-pink);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    .btn-checkout:hover {
+      background-color: #f3a5b8;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 1rem;
+      color: var(--pastel-pink);
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background: var(--dark-green);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Flor <span>y Vida</span></div>
+    <div></div>
+  </header>
+
+  <main>
+    <div class="cart-box">
+      <h1 class="story-title">B13: Carrito de compras</h1>
+      
+      <a href="catalogo.html" class="continue-shopping">← Seguir comprando</a>
+
+      <!-- Carrito con productos -->
+      <div class="cart-item" id="item1">
+        <img src="catalogo_imagenes/ramo-primaveral.jpg" alt="Ramo Primavera" class="item-img">
+        <div class="item-info">
+          <div class="item-name">Ramo Primavera</div>
+          <div class="item-price" data-price="18990">$18.990</div>
+          <div class="item-qty">
+            <button class="qty-btn" onclick="updateQty('item1', -1)">-</button>
+            <span class="qty-value" id="qty1">2</span>
+            <button class="qty-btn" onclick="updateQty('item1', 1)">+</button>
+          </div>
+          <button class="remove-btn" onclick="removeItem('item1')">Eliminar</button>
+        </div>
+      </div>
+
+      <div class="cart-item" id="item2">
+        <img src="catalogo_imagenes/ramo_rosas.jpg" alt="Ramo Rosa Clásico" class="item-img">
+        <div class="item-info">
+          <div class="item-name">Ramo Rosa Clásico</div>
+          <div class="item-price" data-price="16990">$16.990</div>
+          <div class="item-qty">
+            <button class="qty-btn" onclick="updateQty('item2', -1)">-</button>
+            <span class="qty-value" id="qty2">1</span>
+            <button class="qty-btn" onclick="updateQty('item2', 1)">+</button>
+          </div>
+          <button class="remove-btn" onclick="removeItem('item2')">Eliminar</button>
+        </div>
+      </div>
+
+      <!-- Resumen -->
+      <div class="cart-summary">
+        <div class="summary-row">
+          <span>Subtotal (<span id="total-items">3</span> artículos)</span>
+          <span id="subtotal-value">$54.970</span>
+        </div>
+        <div class="summary-row">
+          <span>Envío</span>
+          <span id="shipping-value">$2.500</span>
+        </div>
+        <div class="summary-row total-row">
+          <span>Total</span>
+          <span id="total-value">$57.470</span>
+        </div>
+      </div>
+
+      <button class="btn-checkout" onclick="proceedToCheckout()">Proceder al checkout</button>
+      <a href="index.html" class="back-link">← Volver al inicio</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Flor y Vida — Story B13</p>
+  </footer>
+
+  <script>
+    // Precios base
+    const prices = {
+      'item1': 18990,
+      'item2': 16990
+    };
+
+    // Función para actualizar cantidades y total
+    function updateQty(itemId, delta) {
+      const qtyEl = document.getElementById('qty' + itemId.slice(-1));
+      let qty = parseInt(qtyEl.textContent);
+      qty = Math.max(1, qty + delta);
+      qtyEl.textContent = qty;
+      updateCartTotal();
+    }
+
+    // Función para eliminar ítem
+    function removeItem(itemId) {
+      document.getElementById(itemId).style.display = 'none';
+      updateCartTotal();
+    }
+
+    // Función para recalcular total (aca llnado simulado de carrrito (precios y cantidades ))
+    function updateCartTotal() {
+      let totalItems = 0;
+      let subtotal = 0;
+
+      // Item 1
+      if (document.getElementById('item1').style.display !== 'none') {
+        const qty1 = parseInt(document.getElementById('qty1').textContent);
+        totalItems += qty1;
+        subtotal += prices.item1 * qty1;
+      }
+
+      // Item 2
+      if (document.getElementById('item2').style.display !== 'none') {
+        const qty2 = parseInt(document.getElementById('qty2').textContent);
+        totalItems += qty2;
+        subtotal += prices.item2 * qty2;
+      }
+
+      const shipping = totalItems > 0 ? 2500 : 0;
+      const total = subtotal + shipping;
+
+      // Actualizar 
+      document.getElementById('total-items').textContent = totalItems;
+      document.getElementById('subtotal-value').textContent = '$' + subtotal.toLocaleString('es-CL');
+      document.getElementById('shipping-value').textContent = '$' + shipping.toLocaleString('es-CL');
+      document.getElementById('total-value').textContent = '$' + total.toLocaleString('es-CL');
+    }
+
+    // Proceder al checkout
+    function proceedToCheckout() {
+      const totalItems = parseInt(document.getElementById('total-items').textContent);
+      if (totalItems === 0) {
+        alert('Carrito vacío');
+        return;
+      }
+      window.location.href = 'B14.html';
+    }
+
+    // Inicializar total a pafar 
+    updateCartTotal();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>B11 - Actualizar stock y precios | Flor y Vida</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pastel-pink: #f8c6d0;
+      --pastel-mint: #d8f3dc;
+      --pastel-cream: #fef9f3;
+      --pastel-lavender: #e6e6fa;
+      --pastel-gray: #f5f5f5;
+      --dark-green: #2d5a27;
+      --text: #333;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: var(--pastel-cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--dark-green);
+      font-weight: 600;
+    }
+
+    .logo span {
+      color: var(--pastel-pink);
+    }
+
+    main {
+      padding: 2rem 5%;
+    }
+
+    .admin-panel {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .story-title {
+      font-family: 'Playfair Display', serif;
+      color: var(--dark-green);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-size: 1.6rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1rem;
+    }
+
+    .readonly {
+      background-color: #f0f0f0;
+      cursor: not-allowed;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 0.9rem;
+      background-color: var(--pastel-pink);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    .btn-submit:hover {
+      background-color: #f3a5b8;
+    }
+
+    .message {
+      padding: 0.8rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      text-align: center;
+      display: none;
+    }
+
+    .success {
+      background-color: var(--pastel-mint);
+      color: var(--dark-green);
+    }
+
+    .error {
+      background-color: #ffe6e6;
+      color: #d32f2f;
+    }
+
+    .admin-menu {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .admin-menu a {
+      padding: 0.5rem 1rem;
+      background-color: var(--pastel-mint);
+      color: var(--dark-green);
+      text-decoration: none;
+      border-radius: 20px;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .admin-menu a:hover {
+      background-color: #c0e7c4;
+    }
+
+    .info-box {
+      background-color: #e8f5e9;
+      padding: 0.8rem;
+      border-radius: 6px;
+      margin-bottom: 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 1rem;
+      color: var(--pastel-pink);
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background: var(--dark-green);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Flor <span>y Vida</span></div>
+    <div></div>
+  </header>
+
+  <main>
+    <div class="admin-panel">
+      <h1 class="story-title">B11: Actualizar stock y precios</h1>
+      <p style="margin-bottom: 1.5rem; text-align: center; color: #666;">
+        Modifica disponibilidad y precios según la temporada.
+      </p>
+
+      <div class="info-box">
+        📅 Los cambios quedarán vigentes hasta la fecha límite configurada.
+      </div>
+
+      <div class="admin-menu">
+        <a href="B04.html">Usuarios</a>
+        <a href="B10.html">Agregar producto</a>
+        <a href="B11.html">Actualizar stock/precio</a>
+        <a href="B12.html">Ocultar/eliminar producto</a>
+        <a href="B15.html">Pedidos</a>
+        <a href="B22.html">Reportes</a>
+      </div>
+
+      <div id="message" class="message"></div>
+
+      <form id="updateStockForm">
+        <div class="form-group">
+          <label for="product-id">ID del producto *</label>
+          <input type="text" id="product-id" value="0001" class="readonly" readonly>
+        </div>
+
+        <div class="form-group">
+          <label for="product-name">Nombre del producto</label>
+          <input type="text" id="product-name" value="Ramo Primavera" class="readonly" readonly>
+        </div>
+
+        <div class="form-group">
+          <label for="current-stock">Stock actual</label>
+          <input type="number" id="current-stock" value="3" class="readonly" readonly>
+        </div>
+
+        <div class="form-group">
+          <label for="new-stock">Nuevo stock *</label>
+          <input type="number" id="new-stock" value="5" min="0" required>
+        </div>
+
+        <div class="form-group">
+          <label for="current-price">Precio actual ($ CLP)</label>
+          <input type="number" id="current-price" value="18990" class="readonly" readonly>
+        </div>
+
+        <div class="form-group">
+          <label for="new-price">Nuevo precio ($ CLP) *</label>
+          <input type="number" id="new-price" value="19990" min="1000" required>
+        </div>
+
+        <div class="form-group">
+          <label for="valid-until">Válido hasta *</label>
+          <input type="date" id="valid-until" value="2025-06-30" required>
+        </div>
+
+        <button type="submit" class="btn-submit">Actualizar producto</button>
+      </form>
+
+      <a href="index.html" class="back-link">← Volver al inicio</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Flor y Vida — Story B11</p>
+  </footer>
+
+  <script>
+    document.getElementById('updateStockForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const newStock = document.getElementById('new-stock').value;
+      const newPrice = document.getElementById('new-price').value;
+      const validUntil = document.getElementById('valid-until').value;
+      const messageEl = document.getElementById('message');
+      
+      if (newStock < 0 || newPrice < 1000) {
+        messageEl.className = 'message error';
+        messageEl.textContent = 'Valores inválidos para stock o precio';
+        messageEl.style.display = 'block';
+      } else {
+        messageEl.className = 'message success';
+        messageEl.textContent = '¡Stock y precio actualizados exitosamente!';
+        messageEl.style.display = 'block';
+      }
+    });
+  </script>
+
+</body>
+</html>

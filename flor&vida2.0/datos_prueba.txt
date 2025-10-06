@@ -1,0 +1,54 @@
+ CLIENTES 
+Registro de usuario:
+- Email válido: flor@gmail.com
+- Contraseña válida: Ramo2202 (6+ caracteres, 1 mayúscula, 1 número)
+- Otro email de prueba: anto202@hotmail.com
+- Email ya registrado: ana@hotmail.com
+- Contraseña inválida: flores (sin mayúscula ni número)
+
+Inicio de sesión (lease email y contraseña ya registrados):
+- Usuario: flor@gmail.com
+- Contraseña: Ramo2202
+
+Recuperación de contraseña:
+- Email para recuperar contraseña: vivi@hotmail.cl
+- Email no registrado: xxx@ejemplo.com
+
+Registro con datos personales (el de direccion y demas):
+- Email: cliente@ejemplo.com
+- Dirección requerida para entrega
+
+Acceso de administración (en el mismo iniciar sesion):
+- Email: empleado01@floryvida.cl
+- Contraseña: Ramo2202
+
+=== PRODUCTOS ===
+Productos de prueba:
+- Ramo Primavera (ID: 0001)
+- Ramo Rosa
+- Ramo Invernal
+
+pd: permite imágenes permitidas: JPG o PNG
+
+=== PEDIDOS ===
+
+Estados de pedido:
+- Pendiente de pago
+- Pago confirmado
+- Pedido despachado
+- Entregado
+
+Solicitud de cancelacion:
+- Motivo válido: "error en dirección"
+- Pedido en estado valido: estado "pago confirmado"
+- Pedido no valido: estado "despachado"
+
+=== PAGOS Y ENTREGAS ===
+
+Métodos de pago:
+- WebPay
+- Servipag
+
+Programación de entrega:
+- Fecha de prueba: 2025-12-24
+- Franja horaria: 12:00

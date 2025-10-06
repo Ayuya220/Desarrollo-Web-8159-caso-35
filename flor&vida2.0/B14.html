@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>B14 - Checkout de pedido | Flor y Vida</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pastel-pink: #f8c6d0;
+      --pastel-mint: #d8f3dc;
+      --pastel-cream: #fef9f3;
+      --pastel-lavender: #e6e6fa;
+      --pastel-gray: #f5f5f5;
+      --dark-green: #2d5a27;
+      --text: #333;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: var(--pastel-cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--dark-green);
+      font-weight: 600;
+    }
+
+    .logo span {
+      color: var(--pastel-pink);
+    }
+
+    main {
+      padding: 3rem 5%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .checkout-box {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      width: 100%;
+      max-width: 700px;
+    }
+
+    .story-title {
+      font-family: 'Playfair Display', serif;
+      color: var(--dark-green);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-size: 1.6rem;
+    }
+
+    .section {
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+      font-weight: 600;
+      color: var(--dark-green);
+      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--pastel-mint);
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.6rem;
+    }
+
+    .delivery-info {
+      background-color: var(--pastel-lavender);
+      padding: 1rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.6rem;
+    }
+
+    .total-row {
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: var(--dark-green);
+      margin-top: 0.5rem;
+      padding-top: 0.8rem;
+      border-top: 1px dashed #ccc;
+    }
+
+    .btn-payment {
+      width: 100%;
+      padding: 0.9rem;
+      background-color: var(--pastel-pink);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    .btn-payment:hover {
+      background-color: #f3a5b8;
+    }
+
+    .message {
+      padding: 0.8rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      text-align: center;
+      display: none;
+    }
+
+    .error {
+      background-color: #ffe6e6;
+      color: #d32f2f;
+    }
+
+    .back-to-cart {
+      display: block;
+      text-align: center;
+      margin-top: 1rem;
+      color: var(--pastel-pink);
+      text-decoration: none;
+    }
+
+    .back-to-cart:hover {
+      text-decoration: underline;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 1rem;
+      color: var(--pastel-pink);
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background: var(--dark-green);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Flor <span>y Vida</span></div>
+    <div></div>
+  </header>
+
+  <main>
+    <div class="checkout-box">
+      <h1 class="story-title">B14: Checkout de pedido</h1>
+      <p style="margin-bottom: 1.5rem; text-align: center; color: #666;">
+        Revisa el resumen de tu pedido antes de proceder al pago.
+      </p>
+
+      <!-- Resumen de productos en ek pedido -->
+      <div class="section">
+        <h2 class="section-title">Productos</h2>
+        <div class="order-item">
+          <span>Ramo Primavera x2</span>
+          <span>$37.980</span>
+        </div>
+        <div class="order-item">
+          <span>Ramo Rosa Clásico x1</span>
+          <span>$16.990</span>
+        </div>
+      </div>
+
+      <!-- Información de entrega -->
+      <div class="section">
+        <h2 class="section-title">Entrega</h2>
+        <div class="delivery-info">
+          📍 <strong>Dirección:</strong> Calle Rosas 123, Providencia<br>
+          📅 <strong>Fecha:</strong> 2025-04-10<br>
+          🕒 <strong>Franja horaria:</strong> 12:00 - 14:00
+        </div>
+      </div>
+
+      <!-- Resumen de costos -->
+      <div class="section">
+        <h2 class="section-title">Resumen</h2>
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span>$54.970</span>
+        </div>
+        <div class="summary-row">
+          <span>Envío</span>
+          <span>$2.500</span>
+        </div>
+        <div class="summary-row total-row">
+          <span>Total a pagar</span>
+          <span>$57.470</span>
+        </div>
+      </div>
+
+      <button class="btn-payment" onclick="proceedToPayment()">Pagar con WebPay o Servipag</button>
+      <a href="B13.html" class="back-to-cart">← Volver al carrito</a>
+    </div>
+
+    <a href="index.html" class="back-link">← Volver al inicio</a>
+  </main>
+
+  <footer>
+    <p>© 2025 Flor y Vida — Story B14</p>
+  </footer>
+
+  <script>
+    function proceedToPayment() {
+      // Simular validación de carrito vacío
+      const hasProducts = true; // En implementación real se verificaría el carrito 
+      
+      if (!hasProducts) {
+        alert('Carrito vacío');
+        return;
+      }
+      
+      window.location.href = 'B16.html';
+    }
+  </script>
+
+</body>
+</html>

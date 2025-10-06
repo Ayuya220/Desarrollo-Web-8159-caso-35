@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>B23 - Reporte de clientes registrados | Flor y Vida</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pastel-pink: #f8c6d0;
+      --pastel-mint: #d8f3dc;
+      --pastel-cream: #fef9f3;
+      --pastel-lavender: #e6e6fa;
+      --pastel-gray: #f5f5f5;
+      --dark-green: #2d5a27;
+      --text: #333;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: var(--pastel-cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--dark-green);
+      font-weight: 600;
+    }
+
+    .logo span {
+      color: var(--pastel-pink);
+    }
+
+    main {
+      padding: 2rem 5%;
+    }
+
+    .report-box {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .story-title {
+      font-family: 'Playfair Display', serif;
+      color: var(--dark-green);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-size: 1.6rem;
+    }
+
+    .filters {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-group {
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .filter-group label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .filter-group input,
+    .filter-group select {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.95rem;
+    }
+
+    .btn-generate {
+      background-color: var(--pastel-pink);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 1.8rem;
+    }
+
+    .btn-generate:hover {
+      background-color: #f3a5b8;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    th, td {
+      padding: 0.8rem;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    th {
+      background-color: var(--pastel-mint);
+      color: var(--dark-green);
+      font-weight: 600;
+    }
+
+    tr:hover {
+      background-color: var(--pastel-cream);
+    }
+
+    .activity-badge {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .active {
+      background-color: var(--pastel-mint);
+      color: var(--dark-green);
+    }
+
+    .inactive {
+      background-color: #ffe0b2;
+      color: #e65100;
+    }
+
+    .no-data {
+      text-align: center;
+      padding: 2rem;
+      color: #777;
+    }
+
+    .message {
+      padding: 0.8rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      text-align: center;
+      display: none;
+    }
+
+    .error {
+      background-color: #ffe6e6;
+      color: #d32f2f;
+    }
+
+    .admin-menu {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .admin-menu a {
+      padding: 0.5rem 1rem;
+      background-color: var(--pastel-mint);
+      color: var(--dark-green);
+      text-decoration: none;
+      border-radius: 20px;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .admin-menu a:hover {
+      background-color: #c0e7c4;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 1rem;
+      color: var(--pastel-pink);
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background: var(--dark-green);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Flor <span>y Vida</span></div>
+    <div></div>
+  </header>
+
+  <main>
+    <div class="report-box">
+      <h1 class="story-title">B23: Reporte de clientes registrados</h1>
+      <p style="margin-bottom: 1.5rem; text-align: center; color: #666;">
+        Visualiza y filtra la lista de clientes registrados por zona, fecha y actividad.
+      </p>
+
+      <div class="admin-menu">
+        <a href="B04.html">Usuarios</a>
+        <a href="B15.html">Pedidos</a>
+        <a href="B22.html">Ventas</a>
+        <a href="B23.html">Clientes registrados</a>
+        <a href="B24.html">Productos más vendidos</a>
+      </div>
+
+      <div id="message" class="message"></div>
+
+      <div class="filters">
+        <div class="filter-group">
+          <label for="zone">Zona</label>
+          <select id="zone">
+            <option value="all">Todas</option>
+            <option value="norte">Norte</option>
+            <option value="centro">Centro</option>
+            <option value="sur">Sur</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="period">Período de registro</label>
+          <select id="period">
+            <option value="all">Todos los tiempos</option>
+            <option value="6m">Últimos 6 meses</option>
+            <option value="3m">Últimos 3 meses</option>
+            <option value="1m">Último mes</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="activity">Frecuencia de compra</label>
+          <select id="activity">
+            <option value="all">Todas</option>
+            <option value="active">Activos (≥2 compras)</option>
+            <option value="inactive">Inactivos</option>
+          </select>
+        </div>
+        <button class="btn-generate" onclick="generateClientReport()">Generar reporte</button>
+      </div>
+
+      <!-- Resultados -->
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Zona</th>
+            <th>Registro</th>
+            <th>Compras</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Antonia Flores</td>
+            <td>flor@gmail.com</td>
+            <td>Centro</td>
+            <td>15/01/2025</td>
+            <td>5</td>
+            <td><span class="activity-badge active">Activo</span></td>
+          </tr>
+          <tr>
+            <td>Viviana Rojas</td>
+            <td>vivi@hotmail.cl</td>
+            <td>Norte</td>
+            <td>03/03/2025</td>
+            <td>2</td>
+            <td><span class="activity-badge active">Activo</span></td>
+          </tr>
+          <tr>
+            <td>Carlos Mena</td>
+            <td>vida@gmail.com</td>
+            <td>Sur</td>
+            <td>22/11/2024</td>
+            <td>1</td>
+            <td><span class="activity-badge inactive">Inactivo</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <a href="index.html" class="back-link">← Volver al inicio</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Flor y Vida — Story B23</p>
+  </footer>
+
+  <script>
+    function generateClientReport() {
+      const period = document.getElementById('period').value;
+      const messageEl = document.getElementById('message');
+      
+      // Simular sin clientes registrados
+      if (period === '1m') {
+        messageEl.className = 'message error';
+        messageEl.textContent = 'No hay clientes registrados';
+        messageEl.style.display = 'block';
+      } else {
+        messageEl.style.display = 'none';
+        alert(`✅ Reporte de clientes generado`);
+      }
+    }
+  </script>
+
+</body>
+</html>

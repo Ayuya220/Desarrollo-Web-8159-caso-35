@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>B24 - Productos más vendidos | Flor y Vida</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pastel-pink: #f8c6d0;
+      --pastel-mint: #d8f3dc;
+      --pastel-cream: #fef9f3;
+      --pastel-lavender: #e6e6fa;
+      --pastel-gray: #f5f5f5;
+      --dark-green: #2d5a27;
+      --text: #333;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: var(--pastel-cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--dark-green);
+      font-weight: 600;
+    }
+
+    .logo span {
+      color: var(--pastel-pink);
+    }
+
+    main {
+      padding: 2rem 5%;
+    }
+
+    .report-box {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .story-title {
+      font-family: 'Playfair Display', serif;
+      color: var(--dark-green);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-size: 1.6rem;
+    }
+
+    .filters {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-group {
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .filter-group label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .filter-group input,
+    .filter-group select {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.95rem;
+    }
+
+    .btn-generate {
+      background-color: var(--pastel-pink);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 1.8rem;
+    }
+
+    .btn-generate:hover {
+      background-color: #f3a5b8;
+    }
+
+    .top-list {
+      margin-top: 1.5rem;
+    }
+
+    .product-item {
+      display: flex;
+      align-items: center;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .rank {
+      width: 30px;
+      height: 30px;
+      background: var(--pastel-pink);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-right: 1rem;
+    }
+
+    .product-info {
+      flex: 1;
+    }
+
+    .product-name {
+      font-weight: 600;
+      color: var(--dark-green);
+    }
+
+    .product-stats {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .no-data {
+      text-align: center;
+      padding: 2rem;
+      color: #777;
+    }
+
+    .message {
+      padding: 0.8rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      text-align: center;
+      display: none;
+    }
+
+    .error {
+      background-color: #ffe6e6;
+      color: #d32f2f;
+    }
+
+    .admin-menu {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .admin-menu a {
+      padding: 0.5rem 1rem;
+      background-color: var(--pastel-mint);
+      color: var(--dark-green);
+      text-decoration: none;
+      border-radius: 20px;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .admin-menu a:hover {
+      background-color: #c0e7c4;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 1rem;
+      color: var(--pastel-pink);
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background: var(--dark-green);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Flor <span>y Vida</span></div>
+    <div></div>
+  </header>
+
+  <main>
+    <div class="report-box">
+      <h1 class="story-title">B24: Productos más vendidos</h1>
+      <p style="margin-bottom: 1.5rem; text-align: center; color: #666;">
+        Identifica los productos más vendidos en un período para planificar stock.
+      </p>
+
+      <div class="admin-menu">
+        <a href="B04.html">Usuarios</a>
+        <a href="B15.html">Pedidos</a>
+        <a href="B22.html">Ventas</a>
+        <a href="B23.html">Clientes registrados</a>
+        <a href="B24.html">Productos más vendidos</a>
+      </div>
+
+      <div id="message" class="message"></div>
+
+      <div class="filters">
+        <div class="filter-group">
+          <label for="period">Período</label>
+          <select id="period">
+            <option value="3m">Últimos 3 meses</option>
+            <option value="6m">Últimos 6 meses</option>
+            <option value="1y">Último año</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="top">Top productos</label>
+          <select id="top">
+            <option value="5">Top 5</option>
+            <option value="10">Top 10</option>
+            <option value="all">Todos</option>
+          </select>
+        </div>
+        <button class="btn-generate" onclick="generateTopReport()">Generar ranking</button>
+      </div>
+
+      <!-- Resultados -->
+      <div class="top-list">
+        <div class="product-item">
+          <div class="rank">1</div>
+          <div class="product-info">
+            <div class="product-name">Ramo Primavera</div>
+            <div class="product-stats">28 unidades vendidas</div>
+          </div>
+        </div>
+        <div class="product-item">
+          <div class="rank">2</div>
+          <div class="product-info">
+            <div class="product-name">Ramo Rosa Clásico</div>
+            <div class="product-stats">19 unidades vendidas</div>
+          </div>
+        </div>
+        <div class="product-item">
+          <div class="rank">3</div>
+          <div class="product-info">
+            <div class="product-name">Ramo Invernal</div>
+            <div class="product-stats">12 unidades vendidas</div>
+          </div>
+        </div>
+      </div>
+      <a href="index.html" class="back-link">← Volver al inicio</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Flor y Vida — Story B24</p>
+  </footer>
+
+  <script>
+    function generateTopReport() {
+      const period = document.getElementById('period').value;
+      const top = document.getElementById('top').value;
+      const messageEl = document.getElementById('message');
+      
+      // Simular sin ventas
+      if (period === '1y' && top === '5') {
+        messageEl.style.display = 'none';
+        alert(`✅ Ranking generado para ${period} - Mostrando top ${top}`);
+      } else {
+        messageEl.className = 'message error';
+        messageEl.textContent = 'No hay productos vendidos en este período';
+        messageEl.style.display = 'block';
+      }
+    }
+  </script>
+
+</body>
+</html>
