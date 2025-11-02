@@ -215,6 +215,44 @@
       <a href="B04.html" style="color: var(--pastel-pink);">Panel de administración</a>
     </p>
   </footer>
+  <script>
+  const API_URL = "https://flor-y-vida-backend.onrender.com";
+
+  async function cargarProductos() {
+    try {
+      const response = await fetch(`${API_URL}/api/productos`);
+      const productos = await response.json();
+
+      const contenedor = document.getElementById("productos");
+      contenedor.innerHTML = "";
+
+      productos.forEach(p => {
+        const card = `
+          <div class="producto">
+            <h3>${p.nombre}</h3>
+            <p>${p.descripcion}</p>
+            <strong>$${p.precio}</strong>
+            <button onclick="agregarAlCarrito(${p.id})">Agregar al carrito</button>
+          </div>
+        `;
+        contenedor.innerHTML += card;
+      });
+    } catch (err) {
+      console.error(err);
+      alert("❌ Error al cargar productos.");
+    }
+  }
+
+  function agregarAlCarrito(id) {
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    carrito.push(id);
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    alert("🛒 Producto agregado al carrito");
+  }
+
+  document.addEventListener("DOMContentLoaded", cargarProductos);
+  </script>
 
 </body>
+
 </html>
