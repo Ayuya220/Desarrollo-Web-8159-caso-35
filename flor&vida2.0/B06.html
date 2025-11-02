@@ -262,13 +262,32 @@
   </footer>
 
   <script>
-    function showDeleteMessage() {
-      const messageEl = document.getElementById('message');
-      messageEl.className = 'message error';
-      messageEl.textContent = 'No se puede eliminar usuario con pedidos pendientes sin despachar';
-      messageEl.style.display = 'block';
+  const API_URL = "https://flor-y-vida-backend.onrender.com";
+
+  document.getElementById("formEliminar").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const id = document.getElementById("idUsuario").value;
+  
+    if (!confirm("¿Seguro que deseas eliminar este usuario?")) return;
+
+    try {
+      const response = await fetch(`${API_URL}/api/usuarios/${id}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) throw new Error("Error al eliminar usuario");
+
+      alert("🗑️ Usuario eliminado correctamente.");
+      document.getElementById("formEliminar").reset();
+    } catch (error) {
+      console.error(error);
+      alert("❌ No se pudo eliminar el usuario.");
     }
+  });
   </script>
 
+
 </body>
+
 </html>
