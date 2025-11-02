@@ -198,6 +198,14 @@
       <a href="index.html" class="back-link">← Volver al inicio</a>
     </div>
   </main>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th><th>Nombre</th><th>Correo</th><th>Tipo</th>
+    </tr>
+  </thead>
+  <tbody id="listaUsuarios"></tbody>
+</table>
 
   <footer>
     <p>© 2025 Flor y Vida — Story B07</p>
@@ -231,5 +239,39 @@
     });
   </script>
 
+  <script>
+  const API_URL = "https://flor-y-vida-backend.onrender.com";
+
+  async function cargarUsuarios() {
+    try {
+      const response = await fetch(`${API_URL}/api/usuarios`);
+      if (!response.ok) throw new Error("Error al obtener usuarios");
+
+      const usuarios = await response.json();
+      const contenedor = document.getElementById("listaUsuarios");
+      contenedor.innerHTML = "";
+
+      usuarios.forEach(u => {
+        const fila = `
+          <tr>
+            <td>${u.id}</td>
+            <td>${u.nombre}</td>
+            <td>${u.correo}</td>
+            <td>${u.tipo}</td>
+          </tr>
+        `;
+        contenedor.innerHTML += fila;
+      });
+    } catch (error) {
+      console.error(error);
+      alert("❌ Error al cargar los usuarios.");
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", cargarUsuarios);
+  </script>
+
+
 </body>
+
 </html>
