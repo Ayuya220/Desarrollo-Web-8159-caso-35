@@ -266,31 +266,35 @@
   </footer>
 
   <script>
-    document.getElementById('addProductForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const productId = document.getElementById('product-id').value;
-      const productName = document.getElementById('product-name').value;
-      const messageEl = document.getElementById('message');
+  const API_URL = "https://flor-y-vida-backend.onrender.com";
 
-      // Simular IDs ya existentes
-      const existingIds = ['0001', '0002'];
-      
-      if (existingIds.includes(productId)) {
-        messageEl.className = 'message error';
-        messageEl.textContent = 'ID ya existente en el catálogo';
-        messageEl.style.display = 'block';
-      } else if (!productName.trim()) {
-        messageEl.className = 'message error';
-        messageEl.textContent = 'Nombre del producto es obligatorio';
-        messageEl.style.display = 'block';
-      } else {
-        messageEl.className = 'message success';
-        messageEl.textContent = `¡Producto "${productName}" agregado exitosamente!`;
-        messageEl.style.display = 'block';
-      }
-    });
+  document.getElementById("formAgregarProducto").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const nombre = document.getElementById("nombre").value;
+    const descripcion = document.getElementById("descripcion").value;
+    const precio = parseFloat(document.getElementById("precio").value);
+
+    try {
+      const response = await fetch(`${API_URL}/api/productos`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nombre, descripcion, precio }),
+      });
+
+      if (!response.ok) throw new Error("Error al agregar producto");
+
+      const data = await response.json();
+      alert(`✅ Producto agregado: ${data.nombre}`);
+      document.getElementById("formAgregarProducto").reset();
+    } catch (error) {
+      console.error(error);
+      alert("❌ No se pudo agregar el producto.");
+    }
+  });
   </script>
 
+
 </body>
+
 </html>
