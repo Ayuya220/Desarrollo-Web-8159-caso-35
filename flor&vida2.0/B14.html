@@ -241,18 +241,38 @@
   </footer>
 
   <script>
-    function proceedToPayment() {
-      // Simular validación de carrito vacío
-      const hasProducts = true; // En implementación real se verificaría el carrito 
-      
-      if (!hasProducts) {
-        alert('Carrito vacío');
-        return;
-      }
-      
-      window.location.href = 'B16.html';
+  const API_URL = "https://flor-y-vida-backend.onrender.com";
+
+  document.getElementById("btnConfirmarPedido").addEventListener("click", async () => {
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+    if (carrito.length === 0) {
+      alert("El carrito está vacío.");
+      return;
     }
+
+    try {
+      const response = await fetch(`${API_URL}/api/pedidos`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ productos: carrito }),
+      });
+
+      if (!response.ok) throw new Error("Error al crear pedido");
+
+      const data = await response.json();
+      localStorage.setItem("ultimoPedidoId", data.id);
+      localStorage.setItem("totalCompra", data.total);
+      alert(`✅ Pedido #${data.id} creado correctamente`);
+      window.location.href = "B16.html"; // Redirige a pago
+    } catch (error) {
+      console.error(error);
+      alert("❌ No se pudo crear el pedido.");
+    }
+  });
   </script>
 
+
 </body>
+
 </html>
