@@ -200,41 +200,36 @@
   </footer>
 
   <script>
-    document.getElementById('registerForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-      const messageEl = document.getElementById('message');
+  const API_URL = "https://flor-y-vida-backend.onrender.com";
 
-      // Simular emails que "ya están registrados"
-      const registeredEmails = ['flor@gmail.com', 'ana@hotmail.com'];
-      
-      // Validar las contraseñas
-      const passwordValid = password.length >= 6 && 
-                            /[A-Z]/.test(password) && 
-                            /\d/.test(password);
-      
-      if (registeredEmails.includes(email)) {
-        messageEl.className = 'message error';
-        messageEl.textContent = 'El correo ya está en uso';
-        messageEl.style.display = 'block';
-      } else if (!passwordValid) {
-        messageEl.className = 'message error';
-        messageEl.textContent = 'La contraseña no cumple los requisitos';
-        messageEl.style.display = 'block';
-      } else {
-        messageEl.className = 'message success';
-        messageEl.textContent = '¡Cuenta creada exitosamente! Redirigiendo...';
-        messageEl.style.display = 'block';
-        
-        // Redirigir a index.html o "pagina de inicio" después de 2 segundos
-        setTimeout(() => {
-          window.location.href = 'index.html';
-        }, 2000);
-      }
-    });
+  document.getElementById("registroForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const nombre = document.getElementById("nombre").value;
+    const correo = document.getElementById("correo").value;
+    const contrasena = document.getElementById("contrasena").value;
+    const tipo = "cliente"; // o "empleado" si aplica
+
+    try {
+      const response = await fetch(`${API_URL}/api/usuarios`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nombre, correo, contrasena, tipo }),
+      });
+
+      if (!response.ok) throw new Error("Error al registrar usuario");
+
+      const data = await response.json();
+      alert(`✅ Usuario creado: ${data.nombre}`);
+      document.getElementById("registroForm").reset();
+    } catch (error) {
+      console.error(error);
+      alert("❌ No se pudo registrar el usuario.");
+    }
+  });
   </script>
 
+
 </body>
+
 </html>
