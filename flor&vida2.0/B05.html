@@ -250,17 +250,34 @@
   </footer>
 
   <script>
-    document.getElementById('modifyUserForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const userId = document.getElementById('user-id').value;
-      const messageEl = document.getElementById('message');
-      
-      messageEl.className = 'message success';
-      messageEl.textContent = `¡Usuario ${userId} actualizado exitosamente!`;
-      messageEl.style.display = 'block';
-    });
+  const API_URL = "https://flor-y-vida-backend.onrender.com";
+
+  document.getElementById("formModificar").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const id = document.getElementById("idUsuario").value;
+    const nombre = document.getElementById("nombre").value;
+    const correo = document.getElementById("correo").value;
+
+    try {
+      const response = await fetch(`${API_URL}/api/usuarios/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nombre, correo }),
+      });
+
+      if (!response.ok) throw new Error("Error al modificar usuario");
+
+      const data = await response.json();
+      alert(`✅ Usuario actualizado: ${data.nombre}`);
+    } catch (error) {
+      console.error(error);
+      alert("❌ No se pudo actualizar el usuario.");
+    }
+  });
   </script>
 
+
 </body>
+
 </html>
