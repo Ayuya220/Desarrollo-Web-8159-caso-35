@@ -283,6 +283,15 @@
       </div>
       <a href="index.html" class="back-link">← Volver al inicio</a>
     </div>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th><th>Nombre</th><th>Stock</th><th>Precio</th>
+        </tr>
+      </thead>
+      <tbody id="reporteProductos"></tbody>
+    </table>
+
   </main>
 
   <footer>
@@ -290,22 +299,38 @@
   </footer>
 
   <script>
-    function generateTopReport() {
-      const period = document.getElementById('period').value;
-      const top = document.getElementById('top').value;
-      const messageEl = document.getElementById('message');
-      
-      // Simular sin ventas
-      if (period === '1y' && top === '5') {
-        messageEl.style.display = 'none';
-        alert(`✅ Ranking generado para ${period} - Mostrando top ${top}`);
-      } else {
-        messageEl.className = 'message error';
-        messageEl.textContent = 'No hay productos vendidos en este período';
-        messageEl.style.display = 'block';
-      }
+  const API_URL = "https://flor-y-vida-backend.onrender.com";
+
+  async function generarReporte() {
+    try {
+      const response = await fetch(`${API_URL}/api/productos/reporte`);
+      if (!response.ok) throw new Error("Error al generar reporte");
+
+      const data = await response.json();
+      const contenedor = document.getElementById("reporteProductos");
+      contenedor.innerHTML = "";
+
+      data.forEach(p => {
+        const fila = `
+          <tr>
+            <td>${p.id}</td>
+            <td>${p.nombre}</td>
+            <td>${p.stock}</td>
+            <td>${p.precio}</td>
+          </tr>
+        `;
+        contenedor.innerHTML += fila;
+      });
+    } catch (error) {
+      console.error(error);
+      alert("❌ No se pudo generar el reporte.");
     }
+  }
+
+  document.addEventListener("DOMContentLoaded", generarReporte);
   </script>
 
+
 </body>
+
 </html>
