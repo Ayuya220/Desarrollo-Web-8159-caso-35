@@ -268,20 +268,32 @@
   </footer>
 
   <script>
-    function hideProduct() {
-      const messageEl = document.getElementById('message');
-      messageEl.className = 'message success';
-      messageEl.textContent = '¡Producto ocultado exitosamente! No se mostrará al cliente.';
-      messageEl.style.display = 'block';
-    }
+  const API_URL = "https://flor-y-vida-backend.onrender.com";
 
-    function deleteProduct() {
-      const messageEl = document.getElementById('message');
-      messageEl.className = 'message success';
-      messageEl.textContent = '¡Producto eliminado definitivamente! Las compras anteriores no se ven afectadas.';
-      messageEl.style.display = 'block';
+  document.getElementById("formEliminarProducto").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const id = document.getElementById("idProducto").value;
+
+    if (!confirm("¿Seguro que deseas eliminar este producto?")) return;
+
+    try {
+      const response = await fetch(`${API_URL}/api/productos/${id}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) throw new Error("Error al eliminar producto");
+
+      alert("🗑️ Producto eliminado correctamente.");
+      document.getElementById("formEliminarProducto").reset();
+    } catch (error) {
+      console.error(error);
+      alert("❌ No se pudo eliminar el producto.");
     }
+  });
   </script>
 
+
 </body>
+
 </html>
