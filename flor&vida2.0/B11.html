@@ -257,25 +257,35 @@
   </footer>
 
   <script>
-    document.getElementById('updateStockForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const newStock = document.getElementById('new-stock').value;
-      const newPrice = document.getElementById('new-price').value;
-      const validUntil = document.getElementById('valid-until').value;
-      const messageEl = document.getElementById('message');
-      
-      if (newStock < 0 || newPrice < 1000) {
-        messageEl.className = 'message error';
-        messageEl.textContent = 'Valores inválidos para stock o precio';
-        messageEl.style.display = 'block';
-      } else {
-        messageEl.className = 'message success';
-        messageEl.textContent = '¡Stock y precio actualizados exitosamente!';
-        messageEl.style.display = 'block';
-      }
-    });
+  const API_URL = "https://flor-y-vida-backend.onrender.com";
+
+  document.getElementById("formModificarProducto").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const id = document.getElementById("idProducto").value;
+    const nombre = document.getElementById("nombre").value;
+    const descripcion = document.getElementById("descripcion").value;
+    const precio = parseFloat(document.getElementById("precio").value);
+
+    try {
+      const response = await fetch(`${API_URL}/api/productos/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nombre, descripcion, precio }),
+      });
+
+      if (!response.ok) throw new Error("Error al modificar producto");
+
+      const data = await response.json();
+      alert(`✅ Producto modificado: ${data.nombre}`);
+    } catch (error) {
+      console.error(error);
+      alert("❌ No se pudo modificar el producto.");
+    }
+  });
   </script>
 
+
 </body>
+
 </html>
