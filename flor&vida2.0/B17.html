@@ -246,23 +246,36 @@
   </footer>
 
   <script>
-    function downloadReceipt() {
-      const messageEl = document.getElementById('message');
-      
-      // Simular validación de email
-      const email = 'flor@gmail.com'; // En implementación real si verificaría si es válido
-      
-      if (email && email.includes('@')) {
-        messageEl.className = 'message success';
-        messageEl.textContent = '✅ Boleta descargada como B17_1001.pdf';
-        messageEl.style.display = 'block';
+  const API_URL = "https://flor-y-vida-backend.onrender.com";
+
+  async function cargarBoleta() {
+    const pedido_id = localStorage.getItem("ultimoPedidoId");
+
+    try {
+      const response = await fetch(`${API_URL}/api/boletas`);
+      const boletas = await response.json();
+
+      const boleta = boletas.find(b => b.pedido_id == pedido_id);
+
+      if (boleta) {
+        document.getElementById("detalleBoleta").innerHTML = `
+          <h2>Boleta #${boleta.numero_boleta}</h2>
+          <p>Total: $${boleta.total}</p>
+          <p>Emitida el: ${new Date(boleta.fecha_emision).toLocaleString()}</p>
+        `;
       } else {
-        messageEl.className = 'message error';
-        messageEl.textContent = 'Error al enviar boleta electrónica, verifique el correo';
-        messageEl.style.display = 'block';
+        document.getElementById("detalleBoleta").textContent = "No se encontró boleta.";
       }
+    } catch (err) {
+      console.error(err);
+      alert("❌ Error al cargar la boleta.");
     }
+  }
+
+  document.addEventListener("DOMContentLoaded", cargarBoleta);
   </script>
 
+
 </body>
+
 </html>
